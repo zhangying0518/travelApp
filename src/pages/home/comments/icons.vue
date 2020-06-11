@@ -100,6 +100,7 @@ export default {
 }
 
 .icons {
+  margin-top:.1rem;
   .icon {
     position: relative;
     overflow: hidden;
