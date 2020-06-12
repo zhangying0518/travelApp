@@ -22,9 +22,9 @@ export default {
   data() {
     return {};
   },
- mounted(){
-   console.log("ppppp",this.list)
- }
+  mounted() {
+    console.log("ppppp", this.list);
+  }
 };
 </script>
 <style lang="stylus" scoped>
