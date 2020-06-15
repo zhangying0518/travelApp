@@ -2,8 +2,8 @@
     <div>
         <city-header></city-header>
         <city-search></city-search>
-        <city-list :cities="cities" :hotCities="hotCities"></city-list>
-        <city-alphabet :cities="cities"></city-alphabet>
+        <city-list :cities="cities" :hotCities="hotCities" :letter="letter"></city-list>
+        <city-alphabet :cities="cities" @change="handleLetterChange"></city-alphabet>
     </div>
 </template>
 <script>
@@ -23,28 +23,32 @@ export default {
     data(){
         return{
             cities:{},
-            hotCities:[]
+            hotCities:[],
+            letter:""
         }
     },
     mounted(){
         this.getCityInfo()
-        console.log("1111",this.cities)
     },
     methods:{
+         // alphabet组件的值
+        handleLetterChange(letter){
+            this.letter = letter
+        },
+        // 请求数据
         getCityInfo(){
             axios.get('api/city.json')
             .then(this.handleGetCityInfoSucc)
         },
         handleGetCityInfoSucc(res){
-            console.log("res",res)
             var res = res.data
             if(res.ret&&res.data){
                 this.cities = res.data.cities
-                console.log("res.data.cities",this.cities)
                 this.hotCities = res.data.hotCities
-                console.log("res.data.hotCities",this.hotCities)
             }
-        }
+        },
+       
+
     }
 }
 </script>

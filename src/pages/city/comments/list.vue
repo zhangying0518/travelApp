@@ -17,7 +17,7 @@
           </div>
         </div>
       </div>
-      <div class="area" v-for="(item,key) of cities" :key="key">
+      <div class="area" v-for="(item,key) of cities" :key="key" :ref="key">
         <div class="title border-topbottom">{{key}}</div>
         <div class="item-list">
           <div class="item border-button" v-for="innerItem of item" :key="innerItem.id">{{innerItem.name}}</div>
@@ -33,15 +33,20 @@ export default {
   props:{
     cities:Object,
     hotCities:Array,
+    letter:String
   },
   data(){
-      return{
-
-      }
+      return{}
   },
-  mounted(){
+  watch:{
+    letter(){
+      const element = this.$refs[this.letter][0] //this.$refs[this.letter]是一个数组，所以需要在后面加[0]
+      this.scroll.scrollToElement(element)
+    }
+  },
+   mounted(){
       this.scroll = new BScroll(this.$refs.wrapper)
-  }
+  },
 };
 </script>
 <style lang="stylus" scoped>
