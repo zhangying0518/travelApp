@@ -5,7 +5,7 @@
         <div class="title border-topbottom">当前城市</div>
         <div class="button-list">
           <div class="button-wrapper">
-            <div class="button">{{this.$store.state.city}}</div>
+            <div class="button">{{this.currentCity}}</div>
           </div>
         </div>
       </div>
@@ -28,8 +28,16 @@
 </template>
 <script>
 import BScroll from 'better-scroll'
+import {mapState,mapMutations} from 'vuex'
 export default {
   name: "cityList",
+  computed:{
+    ...mapState({
+      currentCity:'city'
+    })
+    //表示我想把vuex里面的city这个公用的数据映射到我这个组件的计算属性里，
+    //映射过来的名字叫做currentCity，这样的话页面就这样用，this.currentCity
+  },
   props:{
     cities:Object,
     hotCities:Array,
@@ -49,9 +57,14 @@ export default {
   },
   methods:{
     handleCityClick(name){
-      this.$store.commit('changeCity',name)
+      // this.$store.commit('changeCity',name)
+      this.changeCity(name)
       this.$router.push('/')
-    }
+    },
+    ...mapMutations(['changeCity'])
+    //我们有一个mapMutations叫做changeCity，
+    //然后我把这个mapMutations映射到我这个组件里面，
+    //名字叫做changeCity的方法里,这样60行就可以换成61行这样的写法
   }
 };
 </script>

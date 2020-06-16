@@ -9,7 +9,7 @@
     </div>
     <router-link to="/city">
       <div class="header-right">
-        {{this.$store.state.city}}
+        {{this.city}}
         <span class="iconfont arrow-icon iconsanjiaoxing"></span>
       </div>
     </router-link>
@@ -17,8 +17,15 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
-  name: "homeHeader"
+  name: "homeHeader",
+  computed:{
+    ...mapState(['city'])
+    //表示我把vuex的数据映射到我这个组件的computed的计算属性里，
+    //映射什么呢，我把city这个公用数据映射到我的一个名字叫city的计算属性之中，
+    //这样页面所用的this.$store.state.city就可以换成this.city
+  }
 };
 </script>
 
