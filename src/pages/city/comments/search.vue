@@ -27,7 +27,7 @@ export default {
     cities:Object
   },
   mounted(){
-    this.scroll = new BScroll(this.$refs.search)
+    this.scroll = new BScroll(this.$refs.search,{ mouseWheel: true, click: true, tap: true })
   },
   computed:{
     hasNoData(){
@@ -58,6 +58,7 @@ export default {
   },
   methods:{
      handleCityClick(name){
+       console.log("name",name)
       this.changeCity(name)
       this.$router.push('/')
     },

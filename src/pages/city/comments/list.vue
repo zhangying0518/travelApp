@@ -53,11 +53,11 @@ export default {
     }
   },
    mounted(){
-      this.scroll = new BScroll(this.$refs.wrapper)
+      this.scroll = new BScroll(this.$refs.wrapper,{ mouseWheel: true, click: true, tap: true })
   },
   methods:{
     handleCityClick(name){
-      // this.$store.commit('changeCity',name)
+      console.log("name",name)
       this.changeCity(name)
       this.$router.push('/')
     },

@@ -59,6 +59,7 @@ export default {
       this.touchStatus = false;
     },
     handleLetterClick(e) {
+      console.log("e",e)
       this.$emit("change", e.target.innerText);
     }
   }

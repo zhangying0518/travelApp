@@ -2,10 +2,7 @@
   <div>
     <div>
       <div class="banner" @click="handleBannerClick">
-        <img
-          class="banner-img"
-          :src="bannerImg"
-        />
+        <img class="banner-img" :src="bannerImg" />
         <div class="banner-info">
           <div class="banner-tittle">{{this.sightName}}</div>
           <div class="banner-number">
@@ -15,32 +12,36 @@
         </div>
       </div>
     </div>
-    <common-gallary :imgs="this.gallaryImgs" v-show="showGallary" @close="handleGallaryClick"></common-gallary>
+    <common-fade>
+      <common-gallary :imgs="this.gallaryImgs" v-show="showGallary" @close="handleGallaryClick"></common-gallary>
+    </common-fade>
   </div>
 </template>
 <script>
-import commonGallary from 'common/gallary/gallary'
+import commonGallary from "common/gallary/gallary";
+import commonFade from "common/fade/fadeAnimation";
 export default {
   name: "detailBanner",
-  components:{
-    commonGallary
+  components: {
+    commonGallary,
+    commonFade
   },
-  props:{
-    sightName:String,
-    bannerImg:String,
-    gallaryImgs:Array
+  props: {
+    sightName: String,
+    bannerImg: String,
+    gallaryImgs: Array
   },
   data() {
     return {
-      showGallary:false,
-    }
+      showGallary: false
+    };
   },
   methods: {
-    handleBannerClick(){
-      this.showGallary = true
+    handleBannerClick() {
+      this.showGallary = true;
     },
-    handleGallaryClick(){
-      this.showGallary = false
+    handleGallaryClick() {
+      this.showGallary = false;
     }
   }
 };
